@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "declarationDir": "./dist",
-    "rootDir": "./src",
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
@@ -20,8 +18,13 @@
     "noEmit": false,
     "emitDeclarationOnly": true
   },
+  "include": [
+    "./src/**/*"
+  ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "./bootstrap.d.ts",
+    "./webpack.d.ts"
   ]
 }

@@ -7,10 +7,9 @@ export default () => {
     const {
         dependencies = {},
         peerDependencies = {},
-        module = "dist/index.esm.js",
-        main = "dist/index.cjs.js",
-        webpackModule = "dist/webpack.mjs",
-        bootstrapModule = "dist/bootstrap.mjs",
+        module = "dist/index.mjs",
+        main = "dist/index.js",
+        entry = "dist/entry.mjs",
     } = require(`./package.json`);
     const external = Object.keys(dependencies).concat(Object.keys(peerDependencies));
     const plugins = [
@@ -50,12 +49,9 @@ export default () => {
         bundle('src/index.ts', [
             { file: module, format: 'es' },
             { file: main, format: 'cjs' },
-        ]),
-        bundle("src/webpack.ts", [
-            { file: webpackModule, format: "es", },
         ], ["path"]),
-        bundle("src/bootstrap.ts", [
-            { file: bootstrapModule, format: "es", },
+        bundle("src/entry.ts", [
+            { file: entry, format: "es", },
         ]),
     ];
 }

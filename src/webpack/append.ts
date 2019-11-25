@@ -1,20 +1,9 @@
 import * as webpack from "webpack";
-import * as path from "path";
-import * as utils from "./utils";
 
-export class EnvironmentPlugin extends webpack.EnvironmentPlugin {
-    constructor(metaFile: string = "meta.json") {
-        const environmentKeys = utils.inject(metaFile);
-        super(environmentKeys);
-    }
-}
+import { getEntry } from "./get-entry";
+import { EnvironmentPlugin } from "./environment-plugin";
 
-export function getEntry(): string {
-    const pkg = require("../package.json");
-    return path.join(pkg.name, pkg.bootstrapModule);
-}
-
-export function withBuildCopyright(
+export function append(
     configuration: webpack.Configuration,
     metaFile?: string
 ): webpack.Configuration {

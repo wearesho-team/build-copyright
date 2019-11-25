@@ -4,9 +4,8 @@
   "description": "Build Copyright declarations",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
-  "webpackModule": "dist/webpack.mjs",
-  "bootstrapModule": "dist/bootstrap.mjs",
   "types": "dist/index.d.ts",
+  "entry": "dist/entry.mjs",
   "scripts": {
     "build:types": "tsc --project tsconfig.json",
     "build:compile": "rollup -c",
