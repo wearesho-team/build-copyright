@@ -1,0 +1,43 @@
+{
+  "name": "@sho-js/build-copyright",
+  "version": "1.0.0",
+  "description": "Build Copyright declarations",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "webpackModule": "dist/webpack.mjs",
+  "bootstrapModule": "dist/bootstrap.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build:types": "tsc --project tsconfig.json",
+    "build:compile": "rollup -c",
+    "build:rm": "rm -rf ./dist",
+    "build": "npm run build:rm && npm run build:types && npm run build:compile",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wearesho-team/build-copyright.git"
+  },
+  "author": "Alexander <horat1us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wearesho-team/build-copyright/issues"
+  },
+  "homepage": "https://github.com/wearesho-team/build-copyright#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/node": "^12.12.12",
+    "@types/webpack": "^4.41.0",
+    "rollup": "^1.27.5",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2"
+  },
+  "peerDependencies": {
+    "webpack": "^4.41"
+  }
+}

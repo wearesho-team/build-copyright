@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "targets": {
+          "browsers": [
+            "safari >= 10",
+            "chrome >= 41"
+          ]
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
