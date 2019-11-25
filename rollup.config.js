@@ -7,9 +7,9 @@ export default () => {
     const {
         dependencies = {},
         peerDependencies = {},
-        module = "dist/index.mjs",
-        main = "dist/index.js",
-        entry = "dist/entry.mjs",
+        module,
+        main,
+        entry,
     } = require(`./package.json`);
     const external = Object.keys(dependencies).concat(Object.keys(peerDependencies));
     const plugins = [
@@ -51,7 +51,8 @@ export default () => {
             { file: main, format: 'cjs' },
         ], ["path"]),
         bundle("src/entry.ts", [
-            { file: entry, format: "es", },
+            { file: entry.main, format: "cjs", },
+            { file: entry.module, format: "es", },
         ]),
     ];
 }

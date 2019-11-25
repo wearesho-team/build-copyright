@@ -2,10 +2,13 @@
   "name": "@sho-js/build-copyright",
   "version": "1.1.0",
   "description": "Build Copyright declarations",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "entry": "dist/entry.mjs",
+  "entry": {
+    "main": "dist/entry.js",
+    "module": "dist/entry.mjs"
+  },
   "scripts": {
     "build:types": "tsc --project tsconfig.json",
     "build:compile": "rollup -c",
