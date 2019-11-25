@@ -3,6 +3,7 @@
     "declarationDir": "./dist",
     "module": "esnext",
     "target": "esnext",
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "strict": true,
     "jsx": "react",
@@ -19,7 +20,8 @@
     "emitDeclarationOnly": true
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "package.json"
   ],
   "exclude": [
     "node_modules",

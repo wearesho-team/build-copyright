@@ -49,7 +49,7 @@ export default () => {
         bundle('src/index.ts', [
             { file: module, format: 'es' },
             { file: main, format: 'cjs' },
-        ], ["path"]),
+        ], ["path", "fs",]),
         bundle("src/entry.ts", [
             { file: entry.main, format: "cjs", },
             { file: entry.module, format: "es", },

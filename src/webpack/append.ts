@@ -7,7 +7,7 @@ export function append(
     configuration: webpack.Configuration,
     metaFile?: string
 ): webpack.Configuration {
-    const entry = getEntry();
+    const entry = getEntry(configuration);
     const plugin = new EnvironmentPlugin(metaFile);
 
     if ("string" === typeof configuration.entry) {
