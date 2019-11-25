@@ -1,5 +1,6 @@
 import babel from "rollup-plugin-babel";
 import resolve from "rollup-plugin-node-resolve";
+import replace from '@rollup/plugin-replace';
 
 const extensions = [".ts", ".tsx",];
 
@@ -10,6 +11,7 @@ export default () => {
         module,
         main,
         entry,
+        name,
     } = require(`./package.json`);
     const external = Object.keys(dependencies).concat(Object.keys(peerDependencies));
     const plugins = [
@@ -33,23 +35,23 @@ export default () => {
                 "@babel/typescript",
                 "@babel/react",
             ]
-        })
+        }),
+        replace({
+            'process.env.PACKAGE_NAME': JSON.stringify(name),
+            'process.env.PACKAGE_ENTRY_MAIN': JSON.stringify(entry.main),
+            'process.env.PACKAGE_ENTRY_MODULE': JSON.stringify(entry.module),
+        }),
     ];
 
-    function bundle(input, output, additionalExternal = []) {
-        return {
-            input,
-            output,
-            plugins,
-            external: [...additionalExternal, ...external],
-        };
+    function bundle(input, output) {
+        return { input, output, plugins, external, };
     }
 
     return [
         bundle('src/index.ts', [
             { file: module, format: 'es' },
             { file: main, format: 'cjs' },
-        ], ["path", "fs",]),
+        ]),
         bundle("src/entry.ts", [
             { file: entry.main, format: "cjs", },
             { file: entry.module, format: "es", },

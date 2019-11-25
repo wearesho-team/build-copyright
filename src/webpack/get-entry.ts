@@ -7,11 +7,9 @@ function isSupportModules(resolve?: webpack.Resolve): boolean {
 }
 
 export function getEntry(config: webpack.Configuration = {}): string {
-    const fs = require("fs");
-    const path = require("path");
-    const { name, entry } = <{
-        name: string;
-        entry: { module: string, main: string };
-    }>require(fs.existsSync("../package.json") ? "../package.json" : "../../package.json");
-    return path.join(name, isSupportModules(config.resolve) ? entry.module : entry.main);
+    const packageName = process.env.PACKAGE_NAME;
+    const entryPoint = isSupportModules(config.resolve)
+        ? process.env.PACKAGE_ENTRY_MAIN
+        : process.env.PACKAGE_ENTRY_MODULE;
+    return `${packageName}/${entryPoint}`;
 }
