@@ -11,5 +11,9 @@ export function getEntry(config: webpack.Configuration = {}): string {
     const entryPoint = isSupportModules(config.resolve)
         ? process.env.PACKAGE_ENTRY_MAIN
         : process.env.PACKAGE_ENTRY_MODULE;
-    return `${packageName}/${entryPoint}`;
+    return require("path").resolve(
+        process.cwd(),
+        'node_modules',
+        `${packageName}/${entryPoint}`
+    );
 }
